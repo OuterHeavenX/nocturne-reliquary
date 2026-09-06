@@ -1,0 +1,10 @@
+[
+  { "towerId": "crimson-lash", "rarity": "relic" },
+  { "towerId": "void-cantor", "rarity": "school" },
+  { "towerId": "sanctum-cantor", "rarity": "school" },
+  { "towerId": "sky-piercer", "rarity": "vow" },
+  { "towerId": "eidolon-binder", "rarity": "bind" },
+  { "towerId": "moonshade-duelist", "rarity": "pale" },
+  { "towerId": "aegis-templar", "rarity": "oath" },
+  { "towerId": "chrono-sage", "rarity": "hour" }
+]

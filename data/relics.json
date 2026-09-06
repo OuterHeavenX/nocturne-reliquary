@@ -1,0 +1,26 @@
+[
+  {
+    "id": "tithe-chalice",
+    "name": "Tithe Chalice",
+    "line": "Gold remembers the faithful.",
+    "desc": "+40 starting Relic Gold."
+  },
+  {
+    "id": "nave-wick",
+    "name": "Nave Wick",
+    "line": "A candle that will not kneel.",
+    "desc": "Heart Integrity +20."
+  },
+  {
+    "id": "quicksilver-rosary",
+    "name": "Quicksilver Rosary",
+    "line": "Every tenth hush is holy.",
+    "desc": "Every 10th kill rains consecrated flasks on the lane."
+  },
+  {
+    "id": "hour-splinter",
+    "name": "Hour Splinter",
+    "line": "The clock tower owes you a second.",
+    "desc": "All towers attack 8% faster."
+  }
+]

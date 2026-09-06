@@ -1,0 +1,10 @@
+{
+  "flame": { "id": "flame", "color": "#ff6b3d", "strongVs": ["armored"] },
+  "frost": { "id": "frost", "color": "#7ecbff", "strongVs": ["runner"] },
+  "storm": { "id": "storm", "color": "#f4e27a", "strongVs": ["air"] },
+  "holy": { "id": "holy", "color": "#f3e6b4", "strongVs": ["undead", "shade"] },
+  "shadow": { "id": "shadow", "color": "#7a5cff", "strongVs": ["healer"] },
+  "time": { "id": "time", "color": "#c9a27a", "strongVs": ["boss"] },
+  "void": { "id": "void", "color": "#b07cff", "strongVs": [] },
+  "physical": { "id": "physical", "color": "#e8dcc8", "strongVs": [] }
+}

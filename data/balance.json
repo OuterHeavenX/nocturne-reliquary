@@ -1,0 +1,13 @@
+{
+  "startingGold": 220,
+  "startingHeart": 100,
+  "sellRefund": 0.6,
+  "buildWindow": 14000,
+  "xpPerKill": 6,
+  "xpPerAssist": 2,
+  "xpToLevel": [0, 40, 90, 160, 250, 360, 500, 680, 900, 1200],
+  "apPerDamage": 0.08,
+  "apPerControl": 4,
+  "interestRate": 0,
+  "fastForward": 2.2
+}

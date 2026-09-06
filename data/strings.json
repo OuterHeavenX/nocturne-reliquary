@@ -1,0 +1,12 @@
+{
+  "title": "Nocturne Reliquary",
+  "subtitle": "Crystal Keep Defense",
+  "keep": "Keep Vesperis",
+  "menu": {
+    "begin": "Begin Vigil",
+    "codex": "Codex",
+    "reliquary": "Reliquary",
+    "rites": "Rites",
+    "abandon": "Abandon"
+  }
+}
