@@ -1,0 +1,10 @@
+[
+  {"id":"thrall","name":"Ashen Parishioner","hp":38,"speed":58,"armor":0,"reward":8,"xp":5,"tags":["undead","swarm"],"flying":false,"color":"#8a7a72","leaks":1},
+  {"id":"bat-choir","name":"Spire Cantor","hp":26,"speed":88,"armor":0,"reward":10,"xp":6,"tags":["air"],"flying":true,"color":"#6b4a7a","leaks":1},
+  {"id":"plate-penitent","name":"Iron Confessor","hp":160,"speed":36,"armor":6,"reward":18,"xp":12,"tags":["armored"],"flying":false,"color":"#6d7380","leaks":3},
+  {"id":"marble-coil","name":"Statue Serpent","hp":220,"speed":42,"armor":4,"reward":24,"xp":16,"tags":["armored"],"flying":false,"color":"#cfc6b4","leaks":3},
+  {"id":"blood-runner","name":"Crimson Page","hp":48,"speed":120,"armor":0,"reward":14,"xp":8,"tags":["runner"],"flying":false,"color":"#c43b4b","leaks":2},
+  {"id":"choir-healer","name":"Pale Precentor","hp":70,"speed":50,"armor":1,"reward":16,"xp":10,"tags":["healer","undead"],"flying":false,"color":"#e8dcc8","leaks":2},
+  {"id":"clock-ward","name":"Pendulum Warden","hp":420,"speed":32,"armor":5,"reward":40,"xp":28,"tags":["armored","midboss"],"flying":false,"color":"#c9a27a","leaks":6},
+  {"id":"moon-prince","name":"Prince of the Cracked Moon","hp":1600,"speed":28,"armor":8,"reward":120,"xp":80,"tags":["boss","undead","shade"],"flying":false,"color":"#c43b4b","leaks":20}
+]

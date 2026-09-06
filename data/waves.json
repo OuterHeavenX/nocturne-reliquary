@@ -1,0 +1,14 @@
+[
+  { "id": 1, "name": "Threshing of the Thralls", "spawnMs": 720, "groups": [{ "id": "thrall", "count": 8 }] },
+  { "id": 2, "name": "Second Bell", "spawnMs": 640, "groups": [{ "id": "thrall", "count": 10 }, { "id": "bat-choir", "count": 4 }] },
+  { "id": 3, "name": "Ash Procession", "spawnMs": 560, "groups": [{ "id": "thrall", "count": 12 }, { "id": "plate-penitent", "count": 2 }] },
+  { "id": 4, "name": "Choir of the Spires", "spawnMs": 500, "groups": [{ "id": "bat-choir", "count": 10 }, { "id": "thrall", "count": 6 }] },
+  { "id": 5, "name": "Iron Litany", "spawnMs": 700, "groups": [{ "id": "plate-penitent", "count": 5 }, { "id": "thrall", "count": 8 }] },
+  { "id": 6, "name": "Pages in Crimson", "spawnMs": 420, "groups": [{ "id": "blood-runner", "count": 7 }, { "id": "thrall", "count": 8 }] },
+  { "id": 7, "name": "Marble Unkneels", "spawnMs": 680, "groups": [{ "id": "marble-coil", "count": 3 }, { "id": "plate-penitent", "count": 3 }, { "id": "bat-choir", "count": 5 }] },
+  { "id": 8, "name": "The Clock Penitents", "spawnMs": 800, "groups": [{ "id": "clock-ward", "count": 1 }, { "id": "thrall", "count": 12 }, { "id": "choir-healer", "count": 2 }] },
+  { "id": 9, "name": "Pale Hymn", "spawnMs": 540, "groups": [{ "id": "choir-healer", "count": 4 }, { "id": "plate-penitent", "count": 4 }, { "id": "blood-runner", "count": 5 }] },
+  { "id": 10, "name": "Spires Overflow", "spawnMs": 380, "groups": [{ "id": "bat-choir", "count": 16 }, { "id": "marble-coil", "count": 3 }] },
+  { "id": 11, "name": "Before the Sabbath", "spawnMs": 480, "groups": [{ "id": "clock-ward", "count": 1 }, { "id": "plate-penitent", "count": 6 }, { "id": "blood-runner", "count": 6 }, { "id": "choir-healer", "count": 3 }] },
+  { "id": 12, "name": "Prince of the Cracked Moon", "spawnMs": 600, "groups": [{ "id": "thrall", "count": 10 }, { "id": "bat-choir", "count": 8 }, { "id": "moon-prince", "count": 1 }, { "id": "choir-healer", "count": 2 }] }
+]
