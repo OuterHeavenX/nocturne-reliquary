@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Nocturne Reliquary — gothic crystal-keep tower defense. Phaser 3 + Three.js.",
+  "description": "Nocturne Reliquary \u2014 gothic crystal-keep tower defense. Phaser 3 + Three.js.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:single": "vite build && node scripts/build-single.mjs"
   },
   "dependencies": {
     "gsap": "^3.13.0",
