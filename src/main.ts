@@ -2,7 +2,12 @@ import { createGame } from "./game";
 import { audio } from "./systems/AudioSystem";
 import { bootTitleKeep } from "./three/TitleKeep";
 
-bootTitleKeep();
+try {
+  bootTitleKeep();
+} catch (err) {
+  console.warn("Title keep (Three.js) failed; Phaser vigil still starts.", err);
+}
+
 createGame();
 
 const unlock = () => {
