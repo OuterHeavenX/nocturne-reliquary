@@ -23,6 +23,10 @@ export interface FireContext {
   match: MatchContext;
   enemies: Enemy[];
   time: number;
+  moon: number;
+  float: (x: number, y: number, text: string, color: string) => void;
+  spawnProjectile: (p: import("../src/entities/Projectile").Projectile) => void;
+  healHeart: (n: number) => void;
 }
 
 export interface TowerBehavior {
