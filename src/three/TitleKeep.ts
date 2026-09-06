@@ -1,25 +1,31 @@
 import gsap from "gsap";
 import * as THREE from "three";
+import { isTouch, onStageResize, stageSize } from "../ui/Stage";
 
 export class TitleKeep {
   renderer: THREE.WebGLRenderer;
   scene = new THREE.Scene();
   camera: THREE.PerspectiveCamera;
-  moon: THREE.Mesh;
-  crystal: THREE.Mesh;
+  moon!: THREE.Mesh;
+  crystal!: THREE.Mesh;
   keep = new THREE.Group();
   clock = new THREE.Clock();
   raf = 0;
   visible = true;
+  inMatch = false;
+  private frame = 0;
 
   constructor(private canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    // Phones render this backdrop behind the board; a 3x pixel ratio buys
+    // nothing there and costs frames in the match.
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio, isTouch ? 1.5 : 2));
     this.renderer.setClearColor(0x07071a, 1);
     this.camera = new THREE.PerspectiveCamera(42, 1, 0.1, 200);
     this.camera.position.set(0, 4.2, 16);
-    this.resize();
     this.build();
+    this.resize();
+    onStageResize(() => this.resize());
     window.addEventListener("resize", () => this.resize());
   }
 
@@ -120,13 +126,13 @@ export class TitleKeep {
 
   setMode(mode: "title" | "cards" | "match" | "hidden"): void {
     this.visible = mode !== "hidden";
+    this.inMatch = mode === "match";
     this.canvas.style.opacity = mode === "match" ? "0.28" : mode === "hidden" ? "0" : "1";
     this.canvas.style.filter = mode === "cards" ? "blur(2px) brightness(0.7)" : "none";
   }
 
   resize(): void {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+    const { w, h } = stageSize();
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / Math.max(1, h);
     this.camera.updateProjectionMatrix();
@@ -135,6 +141,11 @@ export class TitleKeep {
   start(): void {
     const loop = () => {
       this.raf = requestAnimationFrame(loop);
+      this.frame += 1;
+      if (!this.visible) return;
+      // Behind the board on a phone, half-rate is indistinguishable and leaves
+      // the frame budget to the vigil itself.
+      if (isTouch && this.inMatch && this.frame % 2) return;
       const t = this.clock.getElapsedTime();
       this.keep.rotation.y = Math.sin(t * 0.12) * 0.18;
       this.crystal.rotation.y = t * 0.8;

@@ -1,6 +1,9 @@
 import { createGame } from "./game";
 import { audio } from "./systems/AudioSystem";
 import { bootTitleKeep } from "./three/TitleKeep";
+import { initStage } from "./ui/Stage";
+
+initStage();
 
 try {
   bootTitleKeep();

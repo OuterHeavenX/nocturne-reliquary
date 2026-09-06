@@ -2,23 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <title>Nocturne Reliquary — Crystal Keep Defense</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./icon-180.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="theme-color" content="#07071a" />
+    <meta name="description" content="Gothic crystal-keep tower defense. Hold the nave. Spend the blood. Bind the relic." />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Nocturne" />
     <style>
       :root { color-scheme: dark; }
       * { box-sizing: border-box; }
       html, body {
         margin: 0; width: 100%; height: 100%; overflow: hidden;
-        background: #07071a;
+        background: #05050f;
         font-family: "Cinzel", "Palatino Linotype", Palatino, serif;
+        /* Phones: the canvas owns every gesture — no scroll, pinch, or long-press menu. */
+        touch-action: none;
+        overscroll-behavior: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
       }
       #app { position: relative; width: 100%; height: 100%; }
+      /* The stage is the 16:9 letterbox both canvases share, so the 3D keep
+         lines up exactly with the Phaser play field at any screen size. */
+      #stage { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; }
       #three-root { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; }
       #phaser-root { position: absolute; inset: 0; z-index: 1; }
+      #phaser-root canvas { display: block; }
       #boot-veil {
         position: absolute; inset: 0; z-index: 5;
         display: flex; align-items: center; justify-content: center; flex-direction: column;
+        text-align: center; padding: 0 24px;
         color: #e4c37a; letter-spacing: 0.28em; text-transform: uppercase;
         background: radial-gradient(circle at 50% 40%, rgba(196, 59, 75, 0.22), transparent 42%), #07071a;
         transition: opacity 0.8s ease;
@@ -30,16 +53,45 @@
         opacity: 0; transition: opacity 0.6s ease;
       }
       #boot-veil.show-hint .hint { opacity: 0.9; }
+      /* Portrait gate — the keep is built for landscape, so ask for the turn. */
+      #rotate-veil {
+        position: fixed; inset: 0; z-index: 40; display: none;
+        align-items: center; justify-content: center; flex-direction: column;
+        text-align: center; padding: 32px;
+        background: radial-gradient(circle at 50% 45%, rgba(122, 92, 255, 0.16), transparent 55%), #07071a;
+        color: #e4c37a; letter-spacing: 0.2em; text-transform: uppercase; font-size: 15px;
+      }
+      #rotate-veil.on { display: flex; }
+      #rotate-veil svg { width: 76px; height: 76px; margin-bottom: 26px; }
+      #rotate-veil small {
+        margin-top: 16px; font-size: 12px; letter-spacing: 0.14em;
+        color: #e8dcc8; opacity: 0.72; text-transform: none; font-style: italic;
+      }
+      @keyframes turn-keep {
+        0%, 34% { transform: rotate(0deg); }
+        56%, 100% { transform: rotate(-90deg); }
+      }
+      #rotate-veil svg { animation: turn-keep 2.8s ease-in-out infinite; }
     </style>
   </head>
   <body>
     <div id="app">
-      <canvas id="three-root"></canvas>
-      <div id="phaser-root"></div>
-      <div id="boot-veil">
-        Keep Vesperis
-        <small>The Reliquary Heart remembers</small>
-        <small class="hint">This is the loading veil — wait, or tap</small>
+      <div id="stage">
+        <canvas id="three-root"></canvas>
+        <div id="phaser-root"></div>
+        <div id="boot-veil">
+          Keep Vesperis
+          <small>The Reliquary Heart remembers</small>
+          <small class="hint">This is the loading veil — wait, or tap</small>
+        </div>
+      </div>
+      <div id="rotate-veil">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#e4c37a" stroke-width="2" aria-hidden="true">
+          <rect x="15" y="4" width="18" height="40" rx="3" />
+          <circle cx="24" cy="38" r="1.6" fill="#e4c37a" stroke="none" />
+        </svg>
+        Turn the keep sideways
+        <small>Nocturne Reliquary is held in landscape</small>
       </div>
     </div>
     <script>

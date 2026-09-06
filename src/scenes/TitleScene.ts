@@ -3,6 +3,7 @@ import { GAME_HEIGHT, GAME_WIDTH } from "../config";
 import { audio } from "../systems/AudioSystem";
 import { loadMeta } from "../systems/SaveSystem";
 import { getTitleKeep } from "../three/TitleKeep";
+import { FONT, SANS, SERIF, touchButton } from "../ui/Hud";
 
 export class TitleScene extends Phaser.Scene {
   constructor() {
@@ -14,25 +15,25 @@ export class TitleScene extends Phaser.Scene {
     audio.startAmbience();
     this.cameras.main.setBackgroundColor("rgba(0,0,0,0)");
 
-    this.add.text(GAME_WIDTH / 2, 118, "NOCTURNE RELIQUARY", {
-      fontFamily: "Georgia, Times, serif",
-      fontSize: "54px",
+    this.add.text(GAME_WIDTH / 2, 104, "NOCTURNE RELIQUARY", {
+      fontFamily: SERIF,
+      fontSize: `${FONT.hero}px`,
       color: "#E4C37A",
       stroke: "#07071A",
       strokeThickness: 8
     }).setOrigin(0.5);
 
-    this.add.text(GAME_WIDTH / 2, 176, "Crystal Keep Defense", {
-      fontFamily: "Georgia, Times, serif",
-      fontSize: "22px",
+    this.add.text(GAME_WIDTH / 2, 158, "Crystal Keep Defense", {
+      fontFamily: SERIF,
+      fontSize: "26px",
       fontStyle: "italic",
       color: "#E8DCC8"
     }).setOrigin(0.5).setAlpha(0.86);
 
     const meta = loadMeta();
-    this.add.text(GAME_WIDTH / 2, 214, `Codex XP ${meta.codexXp}   ·   Vigils ${meta.vigils}   ·   Best wave ${meta.bestWave}`, {
-      fontFamily: "Trebuchet MS, sans-serif",
-      fontSize: "14px",
+    this.add.text(GAME_WIDTH / 2, 196, `Codex XP ${meta.codexXp}   ·   Vigils ${meta.vigils}   ·   Best wave ${meta.bestWave}`, {
+      fontFamily: SANS,
+      fontSize: `${FONT.small}px`,
       color: "#3EE0C4"
     }).setOrigin(0.5);
 
@@ -45,44 +46,36 @@ export class TitleScene extends Phaser.Scene {
     ];
 
     items.forEach((item, i) => {
-      const y = 300 + i * 58;
-      const hit = this.add.rectangle(GAME_WIDTH / 2, y, 360, 48, 0x07071a, 0.55).setStrokeStyle(1, 0xe4c37a, 0.65).setInteractive({ useHandCursor: true });
-      const label = this.add.text(GAME_WIDTH / 2, y, item.label, {
-        fontFamily: "Georgia, Times, serif",
-        fontSize: "22px",
-        color: "#E8DCC8"
-      }).setOrigin(0.5);
-      hit.on("pointerover", () => {
-        hit.setStrokeStyle(2, 0x3ee0c4, 1);
-        label.setColor("#E4C37A");
-        audio.tone(640, 0.05, "sine", 0.03);
-      });
-      hit.on("pointerout", () => {
-        hit.setStrokeStyle(1, 0xe4c37a, 0.65);
-        label.setColor("#E8DCC8");
-      });
-      hit.on("pointerdown", () => {
-        audio.cardDeal();
-        if (item.scene) this.scene.start(item.scene);
-        else item.extra?.();
-      });
+      const y = 262 + i * 78;
+      touchButton(
+        this,
+        GAME_WIDTH / 2,
+        y,
+        item.label,
+        () => {
+          audio.cardDeal();
+          if (item.scene) this.scene.start(item.scene);
+          else item.extra?.();
+        },
+        { w: 420, h: 66, size: FONT.title, fill: 0x07071a }
+      );
     });
 
-    this.add.text(GAME_WIDTH / 2, GAME_HEIGHT - 36, "Hold the nave. Spend the blood. Bind the relic.", {
-      fontFamily: "Georgia, Times, serif",
+    this.add.text(GAME_WIDTH / 2, GAME_HEIGHT - 30, "Hold the nave. Spend the blood. Bind the relic.", {
+      fontFamily: SERIF,
       fontStyle: "italic",
-      fontSize: "16px",
+      fontSize: `${FONT.body}px`,
       color: "#C43B4B"
     }).setOrigin(0.5);
   }
 
   toast(msg: string): void {
-    const t = this.add.text(GAME_WIDTH / 2, GAME_HEIGHT - 80, msg, {
-      fontFamily: "Trebuchet MS, sans-serif",
-      fontSize: "16px",
+    const t = this.add.text(GAME_WIDTH / 2, GAME_HEIGHT - 76, msg, {
+      fontFamily: SANS,
+      fontSize: `${FONT.body}px`,
       color: "#E4C37A",
       backgroundColor: "#07071acc",
-      padding: { x: 14, y: 8 }
+      padding: { x: 16, y: 10 }
     }).setOrigin(0.5).setDepth(20);
     this.time.delayedCall(2200, () => t.destroy());
   }
