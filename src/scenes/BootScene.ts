@@ -7,11 +7,15 @@ export class BootScene extends Phaser.Scene {
   }
 
   create(): void {
-    generateTextures(this);
+    try {
+      generateTextures(this);
+    } catch (err) {
+      console.warn("Procedural sprites failed", err);
+    }
     const veil = document.getElementById("boot-veil");
     if (veil) {
       veil.classList.add("hidden");
-      setTimeout(() => veil.remove(), 900);
+      setTimeout(() => veil.remove(), 700);
     }
     this.scene.start("title");
   }
