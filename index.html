@@ -25,6 +25,11 @@
       }
       #boot-veil.hidden { opacity: 0; pointer-events: none; }
       #boot-veil small { margin-top: 14px; letter-spacing: 0.18em; color: #e8dcc8; opacity: 0.7; }
+      #boot-veil .hint {
+        margin-top: 28px; letter-spacing: 0.16em; font-size: 11px; color: #3ee0c4;
+        opacity: 0; transition: opacity 0.6s ease;
+      }
+      #boot-veil.show-hint .hint { opacity: 0.9; }
     </style>
   </head>
   <body>
@@ -34,8 +39,20 @@
       <div id="boot-veil">
         Keep Vesperis
         <small>The Reliquary Heart remembers</small>
+        <small class="hint">This is the loading veil — wait, or tap</small>
       </div>
     </div>
+    <script>
+      const veil = document.getElementById("boot-veil");
+      const lift = () => {
+        if (!veil) return;
+        veil.classList.add("hidden");
+        setTimeout(() => veil.remove(), 800);
+      };
+      veil?.addEventListener("pointerdown", lift);
+      setTimeout(() => veil?.classList.add("show-hint"), 2500);
+      setTimeout(lift, 8000);
+    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
